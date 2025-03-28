@@ -1,0 +1,14 @@
+keras==3.9.0
+learning3d==0.1.0
+matplotlib==3.10.1
+numpy==1.24.3
+opencv_contrib_python==4.10.0.84
+opencv_python==4.10.0.84
+pandas==2.2.3
+plyfile==1.1
+scikit_learn==1.2.2
+setuptools==63.2.0
+torch==2.0.1
+torch_geometric==2.6.1
+tqdm==4.65.0
+trimesh==4.6.5
