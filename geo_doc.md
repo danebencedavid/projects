@@ -87,3 +87,24 @@ for root, dirs, files in os.walk(d_path):
 train_dataset = ModelNetDataset(root=d_path, split='train', npoints=1024, data_augmentation=True)
 test_dataset = ModelNetDataset(root=d_path, split='test', npoints=1024, data_augmentation=False)
 ```
+Maga az architektúra az alábbi módon műküdik:
+- `STN3d` (Spatial Transformer Network)
+  Egy 3x3-as transzformációs mátrixot tanul meg a bemeneti pontfelhők (x, y, z) koordinátáinak igazításához. Az STN-t (Spatial Transformer Network) azért használjuk, hogy a PointNet invariáns legyen a geometriai transzformációkkal szemben. 1D konvolúciókat használva a feature-ök kinyeréséhez, teljesen összekötött rétegekkel egy 9 dimenziós vektort jósol meg.
+- STN3d-t használ a bemeneti transzformációhoz, és 1D konvolúciókat alkalmaz a lokális feature-ök kinyeréséhez.
+- `PointNetfeat` egy modul, amely amely feature-öket von ki pontfelhőkből. Beállítja a szükséges rétegeket: egy `STN3d`-t a bemeneti pontfelhő igazításához, konvolúciós rétegeket `Conv1d`  (3-ról 64-re, majd 64-ről 128-ra, végül 128-ról 1024-re) és batch normalizációs rétegeket `BatchNorm1d` minden konvolúciós réteg után.
+- Globális feature-öket kinyer a PointNetfeat-ből, teljesen összekötött rétegeket használ az osztályozáshoz, valamint egy *0.3*-as dropout-ot, a kimenethez pedig softmax-ot alkalmaz.  
+![image](https://github.com/user-attachments/assets/f6b03805-3688-46d9-8158-55237492f4ae)
+
+## DGCNN
+A `DGCNN` (Dynamic Graph CNN) egy másik pontfelhő alapú mély tanulási architektúra, amely dinamikusan konstruált gráfokat használ a pontok közötti kapcsolatok megragadására.
+![image](https://github.com/user-attachments/assets/195ec352-e35d-42b6-ada5-a8b02a24c2cb)
+
+
+## ZÁRÁS
+| Modszer/modell | Pontossag | Bemenet                          |Runtime|
+|----------------|-----------|----------------------------------|--------|
+| SVM            |     39.07% (rbf) - 40.07% (linear) - 26.46% (poly) - 29.72% (sigmoid)       | Topologiai/Geometriai leirok     |1.2s|
+| RandomForest   |     76.63%      | Topologiai/Geometriai leirok     |0.7s|
+| PointNet       |     80.08% (train) - 72.47% (test)      | Point Cloud                      | 29m (15 epoch)|
+| DGCNN          |     93.08% (train) - 87.33% (test)| Point Cloud, de graf generalodik | 36m (5 epoch)
+
