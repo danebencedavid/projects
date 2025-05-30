@@ -43,6 +43,23 @@ for kernel in kernels:
     print(classification_report(y_test, y_pred))
     print(f"Accuracy: {accuracy_score(y_test, y_pred) * 100:.2f}%")
 ```
+## RandomForest
+```python
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+y_pred = rf.predict(X_test)
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+print(f"Accuracy: {accuracy_score(y_test, y_pred) * 100:.2f}%")
+```
+
+Az egyes kinyert feature-k fontossága
+
+
+![image](https://github.com/user-attachments/assets/2eebdaa1-2e17-4299-a10b-e78fde46f332)
+
+
 ## PointNet
 A PointNet egy mély tanulási architektúra, amely közvetlenül pontfelhőkön működik.  
 Források:
