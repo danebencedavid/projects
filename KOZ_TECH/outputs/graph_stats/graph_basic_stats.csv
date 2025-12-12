@@ -1,0 +1,2 @@
+n_nodes,n_edges,avg_degree,density,avg_clustering,connected_components,giant_component_size,diameter,avg_shortest_path
+2708,5278,3.8980797636632203,0.0014399999126942077,0.24067329850193736,78,2485,19,6.310998681298742
