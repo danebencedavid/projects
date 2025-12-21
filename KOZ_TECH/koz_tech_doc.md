@@ -517,6 +517,57 @@ fokozatos szétrombolása hogyan befolyásolja a közösségdetektálást és a 
   </li>
 </ul>
 
+### Rewire with Triadic Closure
+<table>
+  <tr>
+    <th>Rewiring valószínűség</th>
+    <th>Louvain NMI</th>
+    <th>Louvain ARI</th>
+    <th>GCN NMI</th>
+    <th>GCN ARI</th>
+  </tr>
+  <tr>
+    <td>0.0</td>
+    <td>0.446</td>
+    <td>0.227</td>
+    <td>0.505</td>
+    <td>0.507</td>
+  </tr>
+  <tr>
+    <td>0.1</td>
+    <td>0.436</td>
+    <td>0.253</td>
+    <td>0.500</td>
+    <td>0.500</td>
+  </tr>
+  <tr>
+    <td>0.2</td>
+    <td>0.427</td>
+    <td>0.224</td>
+    <td>0.487</td>
+    <td>0.485</td>
+  </tr>
+  <tr>
+    <td>0.4</td>
+    <td>0.410</td>
+    <td>0.199</td>
+    <td>0.478</td>
+    <td>0.485</td>
+  </tr>
+  <tr>
+    <td>0.6</td>
+    <td>0.387</td>
+    <td>0.159</td>
+    <td>0.461</td>
+    <td>0.469</td>
+  </tr>
+</table>
+<div style="display: flex; justify-content: center;">
+<img width="45%" alt="ari_rewire_triadic" src="https://github.com/user-attachments/assets/3b1efc40-d80e-459f-93a4-bbe3efafc5a8" />
+<img width="45%" alt="nmi_rewire_triadic" src="https://github.com/user-attachments/assets/13c0deed-6b83-4cf1-be8a-bf9fc21827e5" />
+
+</div >
+
 ### Targeted attacks
 <p>
   A targeted attack szimuláció célja annak vizsgálata, hogy mi történik, ha nem véletlenszerűen, hanem strukturálisan legfontosabb csomópontokat támadjuk meg.
@@ -582,6 +633,7 @@ Ennek ellenére a GCN robusztusabb marad, mint a Louvain módszer.
     A Louvain teljesítménye tovább romlik, míg a GCN alig veszít pontosságából.
   </li>
 </ul>
+
 
 
 
